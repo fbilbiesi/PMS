@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ComicBookGallery.Models;
 
 namespace ComicBookGallery.Controllers
 {
@@ -11,19 +12,29 @@ namespace ComicBookGallery.Controllers
 
         public ActionResult Detail()
         {
-           ViewBag.SeriesTitle = "The amazing Spider-Man";
-            ViewBag.IssueNumber = 700;
-            ViewBag.Description = "<p>Final Issue</p>";
-            ViewBag.Artists = new string[]
+            var comicBook = new ComicBook()
             {
-                "Script: Dan Slott",
-                "Pencils: Humberto Ramos",
-                "Inks: Victor Olazaba",
-                "Colors: Edgar Delgado",
-                "Letters: Chris Eliopoulos"
-            };
+                SeriesTitle = "The amazing Spider-Man",
+                IssueNumber = 700,
+                DescriptionHtml = "<p>Final Issue</p>",
+                Artists = new Artist[]
+             {
+                new Artist() {Name ="Dan Slott", Role="Script"},
+                new Artist() {Name ="Humberto Ramos", Role="Pencils"},
+                new Artist() {Name ="Victor Olazaba", Role="Inks"},
+                new Artist() {Name ="Edgar Delgado", Role="Colors"},
+                new Artist() {Name ="Chris Eliopoulos", Role="Letters"},
+   
+             }
 
-            return View();
+             };
+            
+            return View(comicBook);
+        } 
+
+            
+
+            
 
             //if (DateTime.Today.DayOfWeek == DayOfWeek.Wednesday)
             //{
@@ -39,4 +50,3 @@ namespace ComicBookGallery.Controllers
         }
 
     }
-}
